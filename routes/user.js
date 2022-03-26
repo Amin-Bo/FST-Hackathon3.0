@@ -32,7 +32,9 @@ router.get('/resident/:id', ResidentController.getResidentById);
 router.post('/resident/update/:id', multer({
     storage: storageUser
 }).single("user_img"), (req, res, next) => {
-     User.findByIdAndUpdate(req.params.id,req.body,{$set:{"user_img":req.file.filename}}, (err, employee)=>{
+    req.body.user_img=req.file.filename;
+     User.findByIdAndUpdate(req.params.id,req.body, (err, employee)=>{
+         console.log(req.file.filename)
          if (err) return res.status(401).json({update : false})
          else return res.status(200).json({updated : true})
     })

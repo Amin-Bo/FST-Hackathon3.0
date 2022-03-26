@@ -30,10 +30,3 @@ exports.getResidentById = (req, res, next) => {
     })
 }
 
-exports.updateResidentProfile = multer({storage:storageUser}).single("user_img") ,   (req, res, next) => {
-    console.log(req.body)
-    // User.findByIdAndUpdate(req.params.id, req.body, (err, employee)=>{
-    //     if (err) return res.status(401).json({update : false})
-    //     else return res.status(200).json({updated : true})
-    // })
-}
