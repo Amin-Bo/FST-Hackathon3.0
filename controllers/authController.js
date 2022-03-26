@@ -76,6 +76,7 @@ exports.register = (req, res, next) => {
         date_in: moment(req.body.date_in).format('YYYY-MM-DD[T00:00:00.000Z]'),
         //date_out: req.body.date_out ? moment(req.body.date_out).format('YYYY-MM-DD[T00:00:00.000Z]') : "Present",
         department: req.body.department,
+        type: req.body.type
     });
     const query = req.body.email;
     //Check the user exists

@@ -17,7 +17,7 @@ const UserSchema = mongoose.Schema({
   user_img: { type: String ,default:"https://www.google.com/imgres?imgurl=https%3A%2F%2Ftoppng.com%2Fuploads%2Fpreview%2Favatar-png-11554021661asazhxmdnu.png&imgrefurl=https%3A%2F%2Ftoppng.com%2Favatar-png-PNG-free-PNG-Images_140590&tbnid=WU9BX6TsFSCo3M&vet=12ahUKEwjGjZD-7uP2AhUWuKQKHaFkAIwQMygBegUIARDaAQ..i&docid=prAtw1vgwusTeM&w=840&h=859&q=avatar%20png&ved=2ahUKEwjGjZD-7uP2AhUWuKQKHaFkAIwQMygBegUIARDaAQ"},
   type: {
     type: String,
-    enum: ["admin","syndic", "resident"],
+    enum: ["admin","owner","syndic", "resident"],
     required: true,
     default: "resident",
   },

@@ -10,7 +10,8 @@ const DepartementSchema = mongoose.Schema({
     },
     syndic: {
         type: Schema.Types.ObjectId
-    },   
+    },  
+     
 });
 const Departement = mongoose.model("Departement", DepartementSchema);
 
