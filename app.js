@@ -9,6 +9,7 @@ const auth = require('./routes/user')
 const appartements=require('./routes/appartement')
 const admin=require('./routes/admin')
 const owner=require('./routes/owner')
+const syndic=require('./routes/syndic')
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/charbabou', {
     useNewUrlParser: true,
@@ -31,5 +32,6 @@ app.use('/api/auth',auth)
 app.use('/api/appartement',appartements)
 app.use('/api/admin',admin)
 app.use('/api/owner',owner)
+app.use('/api/syndic',syndic)
 
 module.exports = app;

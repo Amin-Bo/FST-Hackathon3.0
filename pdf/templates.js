@@ -2,20 +2,15 @@ const PDFDocument = require('pdfkit');
 const path = require('path');
 const fs = require('fs');
 
-exports.workTemplate = (firstName,lastName,cin,date_in,date_out,job_title,department,pdfFile,type) => {
+exports.workTemplate = (firstName,lastName,cin,pdfFile) => {
     
     var today = new Date();
     var todayFormat = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-    logoPath = path.join(__dirname,'../assets/cls.jfif');
-    signature = path.join(__dirname,'../assets/signature.jpg');
+     logoPath = path.join(__dirname,'../assets/logo.png');
+    // signature = path.join(__dirname,'../assets/logo.jpg');
 
-    if (type == "work"){
-      writeType = "a été salarié (e)";
-      title = "ATTESTATION DE TRAVAIL";
-    } else if (type == "internship"){
-      writeType ="a effectué un stage";
-      title = "ATTESTATION DE STAGE";
-    }
+      title = "Reçu de paiement";
+    
     
     var doc = new PDFDocument();
     var pdfStream = fs.createWriteStream(pdfFile);
@@ -28,7 +23,7 @@ exports.workTemplate = (firstName,lastName,cin,date_in,date_out,job_title,depart
           .text('', 50, 200)
           .font('Times-Roman', 20)
           .moveDown()
-          .text('Je sousigné Mr. flen el fouleni Gérant de la société CLS,atteste/attestons par la présente que Mr '+lastName +' '+ firstName+' titulaire de la CIN N°'+cin+', '+writeType+' au sein de notre société du '+ date_in +' au '+ date_out +' occupé le post de '+ job_title +' au department '+ department +'.Cette attestation est délivrée à l’intéressé (e) pour servir et valoir ce que de droit.', {
+          .text('Je sousigné Mr. flen el fouleni le syndic de la residence CLS,atteste/attestons par la présente que Mr '+lastName +' '+ firstName+' titulaire de la CIN N°'+cin+' a payer son facture ', {
             width: 500,
             align: 'justify',
             indent: 50,
@@ -43,7 +38,7 @@ exports.workTemplate = (firstName,lastName,cin,date_in,date_out,job_title,depart
           .moveDown()
           .text('Prénom et nom de l’intermédiaire')
           .text('Signature et cachet');
-          doc.image(signature,240,600,{width : 400});
+        //  doc.image(signature,240,600,{width : 400});
         doc.pipe(pdfStream);
         doc.pipe(fs.createWriteStream(pdfFile));
   

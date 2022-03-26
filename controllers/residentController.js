@@ -1,4 +1,5 @@
 const User = require('../models/users');
+const Reclamation = require('../models/reclamation');
 const multer = require('multer');
 const path = require('path');
 const MIME_TYPE_MAP = {
@@ -6,9 +7,9 @@ const MIME_TYPE_MAP = {
     'image/jpeg': 'jpg',
     'image/jpg': 'jpg'
 };
-const storageUser = multer.diskStorage({
+const storageReclamation = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, '../assets/'));
+        cb(null, path.join(__dirname, '../assets/reclamation/'));
     },
     filename: function (req, file, cb) {
         const name = file.originalname.toLowerCase().split(' ').join('-');
@@ -29,4 +30,39 @@ exports.getResidentById = (req, res, next) => {
         else return res.status(200).json(resident)
     })
 }
-
+exports.addReclamation = (req, res, next) => {
+    const reclamation = new Reclamation({
+        sender:req.user._id,
+        description: req.body.description,
+        pics: req.body.pics,
+        priority: req.body.priority
+    });
+    reclamation.save((err, reclamation)=>{
+        if (err) return res.status(401).json({msg:'error'})
+        else return res.status(200).json(reclamation)
+    })
+}
+exports.cancelReclamation = (req, res, next) => {
+    Reclamation.findByIdAndDelete(req.params.id, (err, reclamation)=>{
+        if (err) return res.status(401).json({msg:'error'})
+        else return res.status(200).json(reclamation)
+    })
+}
+exports.getReclamationById = (req, res, next) => {
+    Reclamation.findById(req.params.id, (err, reclamation)=>{
+        if (err) return res.status(401).json({msg:'error'})
+        else return res.status(200).json(reclamation)
+    })
+}
+exports.getMyReclamations = (req, res, next) => {
+    Reclamation.find({sender: req.user._id}, (err, reclamation)=>{
+        if (err) return res.status(401).json({msg:'error'})
+        else return res.status(200).json(reclamation)
+    })
+}
+exports.getReclamations = (req, res, next) => {
+    Reclamation.find({}, (err, reclamation)=>{
+        if (err) return res.status(401).json({msg:'error'})
+        else return res.status(200).json(reclamation)
+    })
+}
