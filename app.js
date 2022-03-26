@@ -6,6 +6,7 @@ const app = express();
 const path = require('path');
 var passport = require('passport')
 const auth = require('./routes/user')
+const appartements=require('./routes/appartement')
 //connecting to database
 mongoose.connect('mongodb://localhost:27017/charbabou', {
     useNewUrlParser: true,
@@ -23,5 +24,6 @@ app.use(passport.initialize());
 //app.use(passport.session());
 require('./config/passport')(passport)
 app.use('/api/auth',auth)
+app.use('/api/appartement',appartements)
 
 module.exports = app;

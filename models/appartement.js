@@ -35,5 +35,4 @@ const AppartementSchema = mongoose.Schema({
 
 });
 const Appartement = mongoose.model("Appartement", AppartementSchema);
-
 module.exports = Appartement;
