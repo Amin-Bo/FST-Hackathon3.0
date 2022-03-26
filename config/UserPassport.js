@@ -5,7 +5,7 @@ const env = require('dotenv').config();
 
 module.exports = function(passport) {
     let opts = {};
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt')||Headers.authorisation;
+    opts.jwtFromRequest  =ExtractJwt.fromAuthHeaderWithScheme('jwt');
     opts.secretOrKey = env.SECRET||"verysecret";
     
     passport.use(new JwtStrategy(opts, function(jwt_payload, done) {

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
 // Schema Definition
 //TODO: Assignment: Add Validate rule for email to be unique
 
@@ -34,7 +33,7 @@ const ResidenceSchema = mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now()
+        default:   Date.now,
     }
 });
 const Residence = mongoose.model("Residence", ResidenceSchema);

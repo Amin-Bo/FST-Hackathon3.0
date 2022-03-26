@@ -1,6 +1,7 @@
 const User = require('../models/users');
 const Reclamation = require('../models/reclamation');
 const multer = require('multer');
+const PDFInvoice = require('../pdf/pdfInvoice');
 const path = require('path');
 const MIME_TYPE_MAP = {
     'image/png': 'png',
@@ -66,3 +67,10 @@ exports.getReclamations = (req, res, next) => {
         else return res.status(200).json(reclamation)
     })
 }
+
+exports.preview = (req, res, next) => {
+    // console.log(req.body);
+    PDFInvoice.create(req);
+    return res.status(200).json(req.body.file)
+}
+

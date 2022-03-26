@@ -23,7 +23,7 @@ exports.workTemplate = (firstName,lastName,cin,pdfFile) => {
           .text('', 50, 200)
           .font('Times-Roman', 20)
           .moveDown()
-          .text('Je sousigné Mr. flen el fouleni le syndic de la residence CLS,atteste/attestons par la présente que Mr '+lastName +' '+ firstName+' titulaire de la CIN N°'+cin+' a payer son facture ', {
+          .text('Je sousigné Mr. flen el fouleni le syndic de la residence et par la présente que Mr '+lastName +' '+ firstName+' titulaire de la CIN N° '+cin+ ' a payer son facture ', {
             width: 500,
             align: 'justify',
             indent: 50,

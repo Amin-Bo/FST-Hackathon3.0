@@ -58,7 +58,7 @@ exports.login = (req, res, next) => {
                 success: true,
                 message: 'You are logged in now',
                 user,
-                token
+                token : 'jwt '+token
             });
         });
 
