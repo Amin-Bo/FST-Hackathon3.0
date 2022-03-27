@@ -49,12 +49,65 @@ exports.activeResident = (req, res) => {
     })
 }
 exports.getInactiveResident = (req, res) => {
-    User.find({status: 'inactive'  }, (err, user) => {
+    User.find({
+        status: 'inactive'
+    }, (err, user) => {
         if (err) return res.status(401).json({
             msg: err
         })
         else return res.status(200).json({
             msg: 'Resident inactive',
+            resident: user
+        })
+    })
+}
+exports.deleteResident = (req, res) => {
+
+    //delete resident from Appartement 
+    Appartement.findOneAndUpdate({
+        owners: req.params.id
+    }, {
+        $pull: {
+            owners: req.params.id
+        }
+    }, (err, appartement) => {
+        if (err) return res.status(401).json({
+            msg: err
+        })
+        else {
+            //delete resident from Residence
+            Residence.findOneAndUpdate({
+                syndic: req.params.id
+            }, {
+                $pull: {
+                    syndic: req.params.id
+                }
+            }, (err, residence) => {
+                if (err) return res.status(401).json({
+                    msg: err
+                })
+                else {
+                    //delete resident from User
+                    User.findByIdAndRemove(req.params.id, (err, user) => {
+                        if (err) return res.status(401).json({
+                            msg: err
+                        })
+                        else return res.status(200).json({
+                            msg: 'Resident deleted successfully',
+                            resident: user
+                        })
+                    })
+                }
+            })
+        }
+    })
+
+    User.findByIdAndDelete(req.params.id, (err, user) => {
+        if (err) return res.status(401).json({
+            msg: err
+        })
+        else return res.status(200).json({
+            msg: 'Resident deleted successfully',
             resident: user
         })
     })
