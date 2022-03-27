@@ -14,15 +14,15 @@ exports.generateInvoice = (req, res) => {
             msg: err
         })
         else {
-            let userr=user;
+            let userr = user;
             fileName = 'attestation' + '-' + unique_number + '-' + user._id + '.pdf';
             PDFEmployee.create(user, fileName);
             userr.invoices.push(fileName);
-            User.findByIdAndUpdate(req.params.id, userr,(err,user)=>{
-                if(err) return res.status(401).json({
+            User.findByIdAndUpdate(req.params.id, userr, (err, user) => {
+                if (err) return res.status(401).json({
                     msg: err
                 })
-                else{
+                else {
                     return res.status(200).json({
                         msg: 'Invoice generated successfully',
                         resident: user
@@ -33,13 +33,28 @@ exports.generateInvoice = (req, res) => {
     })
 
 }
-exports.activeResident=(req, res)=>{
-    User.findByIdAndUpdate(req.params.id, { $set: { status: 'active' } }, (err, user) => {
+exports.activeResident = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {
+        $set: {
+            status: 'active'
+        }
+    }, (err, user) => {
         if (err) return res.status(401).json({
             msg: err
         })
         else return res.status(200).json({
             msg: 'Resident activated successfully',
+            resident: user
+        })
+    })
+}
+exports.getInactiveResident = (req, res) => {
+    User.find({status: 'inactive'  }, (err, user) => {
+        if (err) return res.status(401).json({
+            msg: err
+        })
+        else return res.status(200).json({
+            msg: 'Resident inactive',
             resident: user
         })
     })

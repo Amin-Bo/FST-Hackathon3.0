@@ -4,4 +4,5 @@ const passport = require('passport');
 const SyndicController = require('../controllers/syndicController');
 router.post('/addInvoice/:id',SyndicController.generateInvoice)
 router.post('/confirmResident/:id',SyndicController.activeResident)
+router.get('/inactiveResidents',SyndicController.getInactiveResident)
 module.exports =router;
