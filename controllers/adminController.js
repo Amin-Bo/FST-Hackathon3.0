@@ -24,5 +24,11 @@ exports.getAllResidence = (req, res) => {
     Residence.find({}, (err, residences) => {
         if (err) return res.status(401).json({ msg: err })
         else return res.status(200).json({ residences })
+    })
+}
+exports.getResidentById = (req, res) => {
+    Residence.findById(req.params.id, (err, residence) => {
+        if (err) return res.status(401).json({ msg: err })
+        else return res.status(200).json(residence)
     }).populate('owner')
 }
