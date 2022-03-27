@@ -32,3 +32,11 @@ exports.getResidentById = (req, res) => {
         else return res.status(200).json(residence)
     }).populate('owner')
 }
+exports.getAllSydics = (req, res) => {  
+    User.find({
+        type: 'syndic'
+    }, (err, user) => {
+        if (err) return res.status(401).json({ msg: err })
+        else return res.status(200).json({ user })
+    })
+}

@@ -5,4 +5,5 @@ router.post('/addResidence',AdminController.addResidence)
 router.post('/addSyndic/:id',AdminController.addSyndicToResidence)
 router.get('/allResidence',AdminController.getAllResidence)
 router.get('/residence/:id',AdminController.getResidentById)
+router.get('/getSyndics',AdminController.getAllSydics)
 module.exports =router;
