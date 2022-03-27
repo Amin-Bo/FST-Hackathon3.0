@@ -33,3 +33,14 @@ exports.generateInvoice = (req, res) => {
     })
 
 }
+exports.activeResident=(req, res)=>{
+    User.findByIdAndUpdate(req.params.id, { $set: { status: 'active' } }, (err, user) => {
+        if (err) return res.status(401).json({
+            msg: err
+        })
+        else return res.status(200).json({
+            msg: 'Resident activated successfully',
+            resident: user
+        })
+    })
+}

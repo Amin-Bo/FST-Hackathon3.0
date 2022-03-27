@@ -42,7 +42,12 @@ const UserSchema = mongoose.Schema({
   },
   invoices: [{
     type: String
-  }]
+  }],
+  status: {
+    type: String,
+    enum: ["active", "inactive"],
+    default: "inactive"
+  }
 });
 
 //Pre Save Hook. Used to hash the password
