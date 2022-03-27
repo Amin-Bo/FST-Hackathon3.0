@@ -73,6 +73,7 @@ exports.register = (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
         cin:req.body.cin,
+        status: req.body.status||'inactive',
         date_in: moment(req.body.date_in).format('YYYY-MM-DD[T00:00:00.000Z]'),
         //date_out: req.body.date_out ? moment(req.body.date_out).format('YYYY-MM-DD[T00:00:00.000Z]') : "Present",
         department: req.body.department,
