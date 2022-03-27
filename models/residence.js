@@ -19,7 +19,6 @@ const ResidenceSchema = mongoose.Schema({
     syndic: [{
         type: Schema.Types.ObjectId,
         ref: "User",
-        default: " "
     }],
     NApprtement: {
         type: Number

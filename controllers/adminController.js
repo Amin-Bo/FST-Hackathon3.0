@@ -20,3 +20,9 @@ exports.addSyndicToResidence = (req, res, next) => {
         else return res.status(200).json({ residence })
     })
 }
+exports.getAllResidence = (req, res) => {
+    Residence.find({}, (err, residences) => {
+        if (err) return res.status(401).json({ msg: err })
+        else return res.status(200).json({ residences })
+    }).populate('owner')
+}
