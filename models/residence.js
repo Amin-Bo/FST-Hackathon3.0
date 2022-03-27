@@ -13,8 +13,7 @@ const ResidenceSchema = mongoose.Schema({
         type: String
     },
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
+        type : Schema.Types.ObjectId, required: false,ref:"User"
     },
     syndic: [{
         type: Schema.Types.ObjectId,
