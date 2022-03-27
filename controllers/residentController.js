@@ -74,3 +74,9 @@ exports.preview = (req, res, next) => {
     return res.status(200).json(req.body.file)
 }
 
+exports.getMyNeighbors = (req, res, next) => {
+    User.find({type: 'resident', department: req.user.department}, (err, resident)=>{
+        if (err) return res.status(401).json({msg:'no resident yet'})
+        else return res.status(200).json({resident})
+    })
+}

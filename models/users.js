@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 
 // Schema Definition
 //TODO: Assignment: Add Validate rule for email to be unique
+const Schema = mongoose.Schema;
 
 const UserSchema = mongoose.Schema({
   firstName: {
@@ -33,6 +34,10 @@ const UserSchema = mongoose.Schema({
   user_img: {
     type: String,
     default: ""
+  },
+  residence: {
+    type: Schema.Types.ObjectId,
+    ref: "Residence",
   },
   type: {
     type: String,

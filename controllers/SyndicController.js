@@ -36,7 +36,8 @@ exports.generateInvoice = (req, res) => {
 exports.activeResident = (req, res) => {
     User.findByIdAndUpdate(req.params.id, {
         $set: {
-            status: 'active'
+            status: 'active',
+            residence: req.body.residence
         }
     }, (err, user) => {
         if (err) return res.status(401).json({
@@ -109,3 +110,17 @@ exports.deleteResident = (req, res) => {
         })
     })
 }
+exports.getMyNeighbors = (req, res) => {
+    User.find({
+        residence: req.user.residence
+    }, (err, user) => {
+        if (err) return res.status(401).json({
+            msg: err
+        })
+        else return res.status(200).json({
+            msg: 'Neighbors',
+            resident: user
+        })
+    })
+}
+

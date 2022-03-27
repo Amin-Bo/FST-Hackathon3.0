@@ -67,4 +67,5 @@ router.post('/cancelReclamation/:id',passport.authenticate('jwt', {session: fals
 router.get('/reclamation/:id',passport.authenticate('jwt', {session: false}) ,ResidentController.getReclamationById)
 router.get('/myReclamations',passport.authenticate('jwt', {session: false}) ,ResidentController.getMyReclamations)
 router.get('/allReclamations',passport.authenticate('jwt', {session: false}) ,ResidentController.getReclamations)
+
 module.exports = router;
