@@ -91,10 +91,7 @@ exports.deleteResident = (req, res) => {
                     User.findByIdAndRemove(req.params.id, (err, user) => {
                         if (err) return res.status(401).json({
                             msg: err
-                        })
-                        else return res.status(200).json({
-                            msg: 'Resident deleted successfully',
-                            resident: user
+                        
                         })
                     })
                 }
