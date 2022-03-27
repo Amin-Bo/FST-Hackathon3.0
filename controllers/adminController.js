@@ -5,7 +5,8 @@ exports.addResidence = (req, res, next) => {
     const residence = new Residence({
         lable: req.body.lable,
         adresse: req.body.adresse,
-        syndic: req.body.syndic,
+        owner: req.body.owner,
+        syndic: req.body.owner,
         NApprtement: req.body.NApprtement,
         })
     residence.save((err, residence) => {
