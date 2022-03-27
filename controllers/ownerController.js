@@ -13,3 +13,10 @@ exports.AddResidence = (req, res) => {
         else return res.status(200).json({ residence })
     })
 }
+
+exports.getMyresidence = (req, res) => {
+    Residence.find({ owner: req.user._id }, (err, residence) => {
+        if (err) return res.status(401).json({ msg: err })
+        else return res.status(200).json({ residence })
+    })
+}
